@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LGConfigurator2019_trackingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AggregateFeature">
+    <Key>
+      <PropertyRef Name="AggregateFeatureId" />
+    </Key>
+    <Property Name="AggregateFeatureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TrackingTypeId" Type="int" Nullable="false" />
+    <Property Name="RetailerId" Type="int" Nullable="false" />
+    <Property Name="FeatureId" Type="int" Nullable="false" />
+    <Property Name="TotalCount" Type="int" Nullable="false" />
+    <Property Name="Timestamp" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AggregateProduct">
+    <Key>
+      <PropertyRef Name="AggregateProductId" />
+    </Key>
+    <Property Name="AggregateProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TrackingTypeId" Type="int" Nullable="false" />
+    <Property Name="RetailerId" Type="int" Nullable="false" />
+    <Property Name="ModelNumber" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="TotalCount" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="19" Scale="2" Nullable="false" />
+    <Property Name="SalePrice" Type="decimal" Precision="19" Scale="2" />
+    <Property Name="Timestamp" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AggregateSearch">
+    <Key>
+      <PropertyRef Name="AggregateSearchId" />
+    </Key>
+    <Property Name="AggregateSearchId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TrackingTypeId" Type="int" Nullable="false" />
+    <Property Name="RetailerId" Type="int" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="TotalCount" Type="int" Nullable="false" />
+    <Property Name="Timestamp" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Retailer">
+    <Key>
+      <PropertyRef Name="RetailerId" />
+    </Key>
+    <Property Name="RetailerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="StoreNumber" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Session">
+    <Key>
+      <PropertyRef Name="SessionId" />
+    </Key>
+    <Property Name="SessionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RetailerId" Type="int" Nullable="false" />
+    <Property Name="Hash" Type="varchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="StartTimestamp" Type="datetime" Nullable="false" />
+    <Property Name="EndTimestamp" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TrackingFeature">
+    <Key>
+      <PropertyRef Name="TrackingFeatureId" />
+    </Key>
+    <Property Name="TrackingFeatureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SessionId" Type="int" Nullable="false" />
+    <Property Name="TrackingTypeId" Type="int" Nullable="false" />
+    <Property Name="FeatureId" Type="int" Nullable="false" />
+    <Property Name="Timestamp" Type="datetime" Nullable="false" />
+    <Property Name="IsAggregated" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TrackingProduct">
+    <Key>
+      <PropertyRef Name="TrackingProductId" />
+    </Key>
+    <Property Name="TrackingProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SessionId" Type="int" Nullable="false" />
+    <Property Name="TrackingTypeId" Type="int" Nullable="false" />
+    <Property Name="ModelNumber" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="19" Scale="2" Nullable="false" />
+    <Property Name="SalePrice" Type="decimal" Precision="19" Scale="2" />
+    <Property Name="Timestamp" Type="datetime" Nullable="false" />
+    <Property Name="IsAggregated" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TrackingSearch">
+    <Key>
+      <PropertyRef Name="TrackingSearchId" />
+    </Key>
+    <Property Name="TrackingSearchId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SessionId" Type="int" Nullable="false" />
+    <Property Name="TrackingTypeId" Type="int" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="Timestamp" Type="datetime" Nullable="false" />
+    <Property Name="IsAggregated" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TrackingSystemLogs">
+    <Key>
+      <PropertyRef Name="SystemLogId" />
+    </Key>
+    <Property Name="SystemLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Exception" Type="varchar(max)" Nullable="false" />
+    <Property Name="StackTrace" Type="varchar(max)" Nullable="false" />
+    <Property Name="Timestamp" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TrackingType">
+    <Key>
+      <PropertyRef Name="TrackingTypeId" />
+    </Key>
+    <Property Name="TrackingTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type_EN" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Type_FR" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Points" Type="int" />
+    <Property Name="InternalName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Aggregate_AggregateType">
+    <End Role="TrackingType" Type="Self.TrackingType" Multiplicity="1" />
+    <End Role="AggregateProduct" Type="Self.AggregateProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrackingType">
+        <PropertyRef Name="TrackingTypeId" />
+      </Principal>
+      <Dependent Role="AggregateProduct">
+        <PropertyRef Name="TrackingTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AggregateFeature_Retailer">
+    <End Role="Retailer" Type="Self.Retailer" Multiplicity="1" />
+    <End Role="AggregateFeature" Type="Self.AggregateFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Retailer">
+        <PropertyRef Name="RetailerId" />
+      </Principal>
+      <Dependent Role="AggregateFeature">
+        <PropertyRef Name="RetailerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AggregateFeature_TrackingType">
+    <End Role="TrackingType" Type="Self.TrackingType" Multiplicity="1" />
+    <End Role="AggregateFeature" Type="Self.AggregateFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrackingType">
+        <PropertyRef Name="TrackingTypeId" />
+      </Principal>
+      <Dependent Role="AggregateFeature">
+        <PropertyRef Name="TrackingTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AggregateProduct_Retailer">
+    <End Role="Retailer" Type="Self.Retailer" Multiplicity="1" />
+    <End Role="AggregateProduct" Type="Self.AggregateProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Retailer">
+        <PropertyRef Name="RetailerId" />
+      </Principal>
+      <Dependent Role="AggregateProduct">
+        <PropertyRef Name="RetailerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AggregateSearch_Retailer">
+    <End Role="Retailer" Type="Self.Retailer" Multiplicity="1" />
+    <End Role="AggregateSearch" Type="Self.AggregateSearch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Retailer">
+        <PropertyRef Name="RetailerId" />
+      </Principal>
+      <Dependent Role="AggregateSearch">
+        <PropertyRef Name="RetailerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AggregateSearch_TrackingType">
+    <End Role="TrackingType" Type="Self.TrackingType" Multiplicity="1" />
+    <End Role="AggregateSearch" Type="Self.AggregateSearch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrackingType">
+        <PropertyRef Name="TrackingTypeId" />
+      </Principal>
+      <Dependent Role="AggregateSearch">
+        <PropertyRef Name="TrackingTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Session_Retailer">
+    <End Role="Retailer" Type="Self.Retailer" Multiplicity="1" />
+    <End Role="Session" Type="Self.Session" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Retailer">
+        <PropertyRef Name="RetailerId" />
+      </Principal>
+      <Dependent Role="Session">
+        <PropertyRef Name="RetailerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tracking_Session">
+    <End Role="Session" Type="Self.Session" Multiplicity="1" />
+    <End Role="TrackingProduct" Type="Self.TrackingProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Session">
+        <PropertyRef Name="SessionId" />
+      </Principal>
+      <Dependent Role="TrackingProduct">
+        <PropertyRef Name="SessionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrackingFeature_Session">
+    <End Role="Session" Type="Self.Session" Multiplicity="1" />
+    <End Role="TrackingFeature" Type="Self.TrackingFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Session">
+        <PropertyRef Name="SessionId" />
+      </Principal>
+      <Dependent Role="TrackingFeature">
+        <PropertyRef Name="SessionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrackingFeature_TrackingType">
+    <End Role="TrackingType" Type="Self.TrackingType" Multiplicity="1" />
+    <End Role="TrackingFeature" Type="Self.TrackingFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrackingType">
+        <PropertyRef Name="TrackingTypeId" />
+      </Principal>
+      <Dependent Role="TrackingFeature">
+        <PropertyRef Name="TrackingTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrackingProduct_TrackingType">
+    <End Role="TrackingType" Type="Self.TrackingType" Multiplicity="1" />
+    <End Role="TrackingProduct" Type="Self.TrackingProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrackingType">
+        <PropertyRef Name="TrackingTypeId" />
+      </Principal>
+      <Dependent Role="TrackingProduct">
+        <PropertyRef Name="TrackingTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrackingSearch_Session">
+    <End Role="Session" Type="Self.Session" Multiplicity="1" />
+    <End Role="TrackingSearch" Type="Self.TrackingSearch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Session">
+        <PropertyRef Name="SessionId" />
+      </Principal>
+      <Dependent Role="TrackingSearch">
+        <PropertyRef Name="SessionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrackingSearch_TrackingType">
+    <End Role="TrackingType" Type="Self.TrackingType" Multiplicity="1" />
+    <End Role="TrackingSearch" Type="Self.TrackingSearch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrackingType">
+        <PropertyRef Name="TrackingTypeId" />
+      </Principal>
+      <Dependent Role="TrackingSearch">
+        <PropertyRef Name="TrackingTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LGConfigurator2019_trackingModelStoreContainer">
+    <EntitySet Name="AggregateFeature" EntityType="Self.AggregateFeature" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AggregateProduct" EntityType="Self.AggregateProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AggregateSearch" EntityType="Self.AggregateSearch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Retailer" EntityType="Self.Retailer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Session" EntityType="Self.Session" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrackingFeature" EntityType="Self.TrackingFeature" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrackingProduct" EntityType="Self.TrackingProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrackingSearch" EntityType="Self.TrackingSearch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrackingSystemLogs" EntityType="Self.TrackingSystemLogs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrackingType" EntityType="Self.TrackingType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Aggregate_AggregateType" Association="Self.FK_Aggregate_AggregateType">
+      <End Role="TrackingType" EntitySet="TrackingType" />
+      <End Role="AggregateProduct" EntitySet="AggregateProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AggregateFeature_Retailer" Association="Self.FK_AggregateFeature_Retailer">
+      <End Role="Retailer" EntitySet="Retailer" />
+      <End Role="AggregateFeature" EntitySet="AggregateFeature" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AggregateFeature_TrackingType" Association="Self.FK_AggregateFeature_TrackingType">
+      <End Role="TrackingType" EntitySet="TrackingType" />
+      <End Role="AggregateFeature" EntitySet="AggregateFeature" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AggregateProduct_Retailer" Association="Self.FK_AggregateProduct_Retailer">
+      <End Role="Retailer" EntitySet="Retailer" />
+      <End Role="AggregateProduct" EntitySet="AggregateProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AggregateSearch_Retailer" Association="Self.FK_AggregateSearch_Retailer">
+      <End Role="Retailer" EntitySet="Retailer" />
+      <End Role="AggregateSearch" EntitySet="AggregateSearch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AggregateSearch_TrackingType" Association="Self.FK_AggregateSearch_TrackingType">
+      <End Role="TrackingType" EntitySet="TrackingType" />
+      <End Role="AggregateSearch" EntitySet="AggregateSearch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Session_Retailer" Association="Self.FK_Session_Retailer">
+      <End Role="Retailer" EntitySet="Retailer" />
+      <End Role="Session" EntitySet="Session" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tracking_Session" Association="Self.FK_Tracking_Session">
+      <End Role="Session" EntitySet="Session" />
+      <End Role="TrackingProduct" EntitySet="TrackingProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrackingFeature_Session" Association="Self.FK_TrackingFeature_Session">
+      <End Role="Session" EntitySet="Session" />
+      <End Role="TrackingFeature" EntitySet="TrackingFeature" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrackingFeature_TrackingType" Association="Self.FK_TrackingFeature_TrackingType">
+      <End Role="TrackingType" EntitySet="TrackingType" />
+      <End Role="TrackingFeature" EntitySet="TrackingFeature" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrackingProduct_TrackingType" Association="Self.FK_TrackingProduct_TrackingType">
+      <End Role="TrackingType" EntitySet="TrackingType" />
+      <End Role="TrackingProduct" EntitySet="TrackingProduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrackingSearch_Session" Association="Self.FK_TrackingSearch_Session">
+      <End Role="Session" EntitySet="Session" />
+      <End Role="TrackingSearch" EntitySet="TrackingSearch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrackingSearch_TrackingType" Association="Self.FK_TrackingSearch_TrackingType">
+      <End Role="TrackingType" EntitySet="TrackingType" />
+      <End Role="TrackingSearch" EntitySet="TrackingSearch" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

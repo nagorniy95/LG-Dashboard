@@ -1,0 +1,174 @@
+﻿@model IEnumerable<LG_Dashboard.Data.Product>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+    <div class="container national-container">
+        <!-- Select time period -->
+        <button type="button" name="week-btn" class="week-btn btn btn-default" value="7">1W</button>
+        <button type="button" name="week2-btn" class="week2-btn btn btn-default" value="14">2W</button>
+        <button type="button" name="month-btn" class="month-btn btn btn-default" value="1">1M</button>
+        <button type="button" name="month3-btn" class="month3-btn btn btn-default" value="3">3M</button>
+        <button type="button" name="year-btn" class="year-btn btn btn-default" value="12">1Y</button>
+        <hr />
+        <div class="date-range">
+            <span class="date"></span> >
+            <span class="today"></span>
+        </div>
+
+        <div class="row session-block">
+            <div class="col-sm-3">
+                <p class="session-title">Sessions</p>
+                <p class="SessionCount">0</p>
+            </div>
+            <div class="col-sm-3">
+                <p class="session-title">Dream Kitchen Configurations</p>
+                <p class="kitchen-count">0</p>
+            </div>
+            <div class="col-sm-3">
+                <p class="session-title">Dream Laundry Configurations</p>
+                <p class="laundry-count">0</p>
+            </div>
+            <div class="col-sm-3">
+                <p class="session-title">Catalogue Sessions</p>
+                <p class="catalogue-count">0</p>
+            </div>
+        </div>
+
+        <div class="row product-group group-block">
+            <div class="col-sm-4">
+                <div>
+                    <h2>Avg Cart Dollar Value</h2>
+                    <div class="lg-red-block"><p class="avgCartValue">$0</p></div>
+                </div>
+                <div>
+                    <h2>PDF's Emailed</h2>
+                    <div class="lg-red-block"><p class="TotalPDFEmailCount">0</p></div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <h2>Top Product Categoies Added to Cart</h2>
+                <table class="table TopProductCategories">
+                    <thead>
+                        <tr>
+                            <th>Appliance Category</th>
+                            <th>Times "Added to Cart"</th>
+                            <th>Average Dollar Value</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row model-group group-block">
+            <div class="col-sm-8">
+                <h2>Top Models - By Category</h2>
+            </div>
+            <div class="col-sm-4 text-right">
+                <select class="form-control">
+                    <option>test</option>
+                </select>
+            </div>
+            <div class="col-sm-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Model Number</th>
+                            <th>Times "Added to Cart"</th>
+                            <th>Top Features</th>
+                            <th>Top Colours</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+
+@section scripts {
+    <script>
+        $(function () {
+            // ******************************** Date and time initialization ********************************
+            // not working
+            var today = new Date();
+            today = today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
+
+            var date = new Date();
+            date.setMonth(date.getMonth() - 1);
+            date = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
+
+            $(".week-btn").click(function () {
+                var date = new Date();
+                date = date.getFullYear() + "-" + date.getMonth() + "-" + (date.getDate() - 7 );
+                $('.date').html(date);
+                return date;
+            });
+
+            $(".week2-btn").click(function () {
+                var date = new Date();
+                date = date.getFullYear() + "-" + date.getMonth() + "-" + (date.getDate() - 14 );
+                $('.date').html(date);
+                return date;
+            });
+
+            $('.today').html(today);
+            $('.date').html(date);
+
+            // ================================== Ajax =====================================
+             $.ajax({
+                    url: "/APIData/Refresh",
+                    method: "GET",
+                    data: {
+                        startDate: "2019-11-01",
+                        endDate: today,
+                        retailerid: '0'
+                    },
+                    success: function (data) {
+                        console.log(data);
+
+                        var html = "";
+                        var tableCategoryDataHtml = [];
+                        var TopProductCategories = data.TopProductCategories;
+
+                        for (var item of TopProductCategories) {
+                            var tableItemHtml = "<tr>";
+                            tableItemHtml += "<td>" + item.Name + "</td>";
+                            tableItemHtml += "<td>" + item.AddtoCartCount + "</td>";
+                            tableItemHtml += "<td>" + "$" + item.AverageDollarValue.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "</td>";
+                            tableItemHtml += "</tr>";
+                            tableCategoryDataHtml.push(tableItemHtml)
+                            //console.log(item);
+                        }
+
+                        // Sessions
+                        var sessionTotal = data.SessionCount;
+                        var kitchenCount = data.SessionDreamConfiguration[1].Count;
+                        var laundryCount = data.SessionDreamConfiguration[0].Count;
+                        var catalogeCount = sessionTotal - (kitchenCount + laundryCount);
+
+                        $('.SessionCount').html(sessionTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));       
+                        $('.kitchen-count').html(kitchenCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                        $('.laundry-count').html(laundryCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                        $('.catalogue-count').html(catalogeCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+
+                        // Avg Cart Dollar Value || PDF's Emaild || Top Product Categories Added to Cart
+                        var sum = 0;
+                        var avgCartValue = 0;
+                        for (var i = 0; i < TopProductCategories.length; i++) {
+                            sum += data.TopProductCategories[i].AverageDollarValue;
+                        }
+                        avgCartValue = sum / TopProductCategories.length;
+
+                        $('.avgCartValue').html("$" + avgCartValue.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+                        $('.TopProductCategories tbody').html(tableCategoryDataHtml);
+                        $('.TotalPDFEmailCount').html(data.TotalPDFEmailCount);
+                    }
+             });
+        });
+
+    </script>
+}

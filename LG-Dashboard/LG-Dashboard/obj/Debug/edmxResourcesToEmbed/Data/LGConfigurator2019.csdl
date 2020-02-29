@@ -1,0 +1,590 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LGConfigurator2019Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Appliance">
+    <Key>
+      <PropertyRef Name="ApplianceId" />
+    </Key>
+    <Property Name="ApplianceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name_EN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name_FR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="InternalName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DefaultImageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Categories" Relationship="Self.ApplianceCategoryJunction" FromRole="Appliance" ToRole="Category" />
+    <NavigationProperty Name="Presets" Relationship="Self.PresetApplianceJunction" FromRole="Appliance" ToRole="Preset" />
+  </EntityType>
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="AreaId" />
+    </Key>
+    <Property Name="AreaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Categories" Relationship="Self.FK_Category_Area" FromRole="Area" ToRole="Category" />
+    <NavigationProperty Name="Furnishings" Relationship="Self.FK_Furnishing_Area" FromRole="Area" ToRole="Furnishing" />
+    <NavigationProperty Name="Presets" Relationship="Self.FK_Presets_Area" FromRole="Area" ToRole="Preset" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_Area" FromRole="Area" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AreaId" Type="Int32" Nullable="false" />
+    <Property Name="ParentCategoryId" Type="Int32" />
+    <Property Name="InternalName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DisplayName_EN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DisplayName_FR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductLabel_EN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductLabel_FR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SortOrder" Type="Int32" />
+    <Property Name="IsVisible" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Area" Relationship="Self.FK_Category_Area" FromRole="Category" ToRole="Area" />
+    <NavigationProperty Name="Category1" Relationship="Self.FK_Category_Category" FromRole="Category" ToRole="Category1" />
+    <NavigationProperty Name="Category2" Relationship="Self.FK_Category_Category" FromRole="Category1" ToRole="Category" />
+    <NavigationProperty Name="Appliances" Relationship="Self.ApplianceCategoryJunction" FromRole="Category" ToRole="Appliance" />
+    <NavigationProperty Name="Products" Relationship="Self.ProductCategoryJunction" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Certification">
+    <Key>
+      <PropertyRef Name="CertificationId" />
+    </Key>
+    <Property Name="CertificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CertificationUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.ProductCertificationJunction" FromRole="Certification" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Color">
+    <Key>
+      <PropertyRef Name="ColorId" />
+    </Key>
+    <Property Name="ColorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name_EN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name_FR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ImageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_Color" FromRole="Color" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Feature">
+    <Key>
+      <PropertyRef Name="FeatureId" />
+    </Key>
+    <Property Name="FeatureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name_EN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Name_FR" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description_EN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description_FR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="YoutubeVideoUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ImageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LogoUrl_EN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LogoUrl_FR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsFilterable" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ProductHotspotFeatures" Relationship="Self.FK_ProductHotspotJunction_Hotspot" FromRole="Feature" ToRole="ProductHotspotFeature" />
+  </EntityType>
+  <EntityType Name="Furnishing">
+    <Key>
+      <PropertyRef Name="FurnishingId" />
+    </Key>
+    <Property Name="FurnishingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AreaId" Type="Int32" Nullable="false" />
+    <Property Name="Name_EN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name_FR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="InternalName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Area" Relationship="Self.FK_Furnishing_Area" FromRole="Furnishing" ToRole="Area" />
+    <NavigationProperty Name="PresetFurnishingStyles" Relationship="Self.FK_FurnishingStyle_Furnishing" FromRole="Furnishing" ToRole="PresetFurnishingStyle" />
+  </EntityType>
+  <EntityType Name="Hotspot">
+    <Key>
+      <PropertyRef Name="HotspotId" />
+    </Key>
+    <Property Name="HotspotId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LeftPos" Type="Double" Nullable="false" />
+    <Property Name="TopPos" Type="Double" Nullable="false" />
+    <NavigationProperty Name="ProductHotspotFeatures" Relationship="Self.FK_ProductHotspotFeature_Hotspot" FromRole="Hotspot" ToRole="ProductHotspotFeature" />
+  </EntityType>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="ImageId" />
+    </Key>
+    <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="ImageViewId" Type="Int32" Nullable="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ImageView" Relationship="Self.FK_Image_ImageView" FromRole="Image" ToRole="ImageView" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Image_Product1" FromRole="Image" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="ImageView">
+    <Key>
+      <PropertyRef Name="ImageViewId" />
+    </Key>
+    <Property Name="ImageViewId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ThumbUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Images" Relationship="Self.FK_Image_ImageView" FromRole="ImageView" ToRole="Image" />
+  </EntityType>
+  <EntityType Name="Preset">
+    <Key>
+      <PropertyRef Name="PresetId" />
+    </Key>
+    <Property Name="PresetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AreaId" Type="Int32" Nullable="false" />
+    <Property Name="Name_EN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name_FR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ThumbUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="InternalName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DefaultColour" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Area" Relationship="Self.FK_Presets_Area" FromRole="Preset" ToRole="Area" />
+    <NavigationProperty Name="PresetFurnishingStyles" Relationship="Self.FK_FurnishingStyle_Presets" FromRole="Preset" ToRole="PresetFurnishingStyle" />
+    <NavigationProperty Name="Appliances" Relationship="Self.PresetApplianceJunction" FromRole="Preset" ToRole="Appliance" />
+  </EntityType>
+  <EntityType Name="PresetFurnishingStyle">
+    <Key>
+      <PropertyRef Name="PresetFurnishingStyleId" />
+    </Key>
+    <Property Name="PresetFurnishingStyleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StyleId" Type="Int32" Nullable="false" />
+    <Property Name="FurnishingId" Type="Int32" Nullable="false" />
+    <Property Name="PresetId" Type="Int32" Nullable="false" />
+    <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Furnishing" Relationship="Self.FK_FurnishingStyle_Furnishing" FromRole="PresetFurnishingStyle" ToRole="Furnishing" />
+    <NavigationProperty Name="Preset" Relationship="Self.FK_FurnishingStyle_Presets" FromRole="PresetFurnishingStyle" ToRole="Preset" />
+    <NavigationProperty Name="Style" Relationship="Self.FK_FurnishingStyle_Style" FromRole="PresetFurnishingStyle" ToRole="Style" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AreaId" Type="Int32" Nullable="false" />
+    <Property Name="ColorId" Type="Int32" Nullable="false" />
+    <Property Name="Name_EN" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name_FR" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description_EN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description_FR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MSRP" Type="Decimal" Precision="19" Scale="2" Nullable="false" />
+    <Property Name="SalePrice" Type="Decimal" Precision="19" Scale="2" />
+    <Property Name="ModelNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BestBuyWebCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Disclaimer_EN" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Disclaimer_FR" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ThumbnailUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateLastEdited" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsAutoArchive" Type="Boolean" Nullable="false" />
+    <Property Name="IsManualArchive" Type="Boolean" Nullable="false" />
+    <Property Name="IsCatalogOnly" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Area" Relationship="Self.FK_Product_Area" FromRole="Product" ToRole="Area" />
+    <NavigationProperty Name="Color" Relationship="Self.FK_Product_Color" FromRole="Product" ToRole="Color" />
+    <NavigationProperty Name="Images" Relationship="Self.FK_Image_Product1" FromRole="Product" ToRole="Image" />
+    <NavigationProperty Name="ProductHotspotFeatures" Relationship="Self.FK_ProductHotspotJunction_Product" FromRole="Product" ToRole="ProductHotspotFeature" />
+    <NavigationProperty Name="ProductSpecifications" Relationship="Self.FK_ProductSpecification_Product" FromRole="Product" ToRole="ProductSpecification" />
+    <NavigationProperty Name="Categories" Relationship="Self.ProductCategoryJunction" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="Certifications" Relationship="Self.ProductCertificationJunction" FromRole="Product" ToRole="Certification" />
+  </EntityType>
+  <EntityType Name="ProductHotspotFeature">
+    <Key>
+      <PropertyRef Name="ProductId" />
+      <PropertyRef Name="HotspotId" />
+      <PropertyRef Name="FeatureId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="HotspotId" Type="Int32" Nullable="false" />
+    <Property Name="FeatureId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Feature" Relationship="Self.FK_ProductHotspotJunction_Hotspot" FromRole="ProductHotspotFeature" ToRole="Feature" />
+    <NavigationProperty Name="Hotspot" Relationship="Self.FK_ProductHotspotFeature_Hotspot" FromRole="ProductHotspotFeature" ToRole="Hotspot" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_ProductHotspotJunction_Product" FromRole="ProductHotspotFeature" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="ProductSpecification">
+    <Key>
+      <PropertyRef Name="ProductSpecificationId" />
+    </Key>
+    <Property Name="ProductSpecificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="SpecificationId" Type="Int32" Nullable="false" />
+    <Property Name="SpecValue_EN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SpecificationImageId" Type="Int32" />
+    <Property Name="SpecValue_FR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_ProductSpecification_Product" FromRole="ProductSpecification" ToRole="Product" />
+    <NavigationProperty Name="SpecificationType" Relationship="Self.FK_ProductSpecification_Specification" FromRole="ProductSpecification" ToRole="SpecificationType" />
+    <NavigationProperty Name="SpecificationImage" Relationship="Self.FK_ProductSpecification_SpecificationImage" FromRole="ProductSpecification" ToRole="SpecificationImage" />
+  </EntityType>
+  <EntityType Name="SpecificationImage">
+    <Key>
+      <PropertyRef Name="SpecificationImageId" />
+    </Key>
+    <Property Name="SpecificationImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ProductSpecifications" Relationship="Self.FK_ProductSpecification_SpecificationImage" FromRole="SpecificationImage" ToRole="ProductSpecification" />
+  </EntityType>
+  <EntityType Name="SpecificationType">
+    <Key>
+      <PropertyRef Name="SpecificationId" />
+    </Key>
+    <Property Name="SpecificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SpecType_EN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Units_EN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsFilterable" Type="Boolean" Nullable="false" />
+    <Property Name="SortName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SpecType_FR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Units_FR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="InternalName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsVisible" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ProductSpecifications" Relationship="Self.FK_ProductSpecification_Specification" FromRole="SpecificationType" ToRole="ProductSpecification" />
+  </EntityType>
+  <EntityType Name="Style">
+    <Key>
+      <PropertyRef Name="StyleId" />
+    </Key>
+    <Property Name="StyleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name_EN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name_FR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ImageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ThumbUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PresetFurnishingStyles" Relationship="Self.FK_FurnishingStyle_Style" FromRole="Style" ToRole="PresetFurnishingStyle" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="SystemLog">
+    <Key>
+      <PropertyRef Name="Exception" />
+      <PropertyRef Name="StackTrace" />
+      <PropertyRef Name="TimeStamp" />
+    </Key>
+    <Property Name="Exception" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <Association Name="FK_Category_Area">
+    <End Role="Area" Type="Self.Area" Multiplicity="1" />
+    <End Role="Category" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="AreaId" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="AreaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Furnishing_Area">
+    <End Role="Area" Type="Self.Area" Multiplicity="1" />
+    <End Role="Furnishing" Type="Self.Furnishing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="AreaId" />
+      </Principal>
+      <Dependent Role="Furnishing">
+        <PropertyRef Name="AreaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Presets_Area">
+    <End Role="Area" Type="Self.Area" Multiplicity="1" />
+    <End Role="Preset" Type="Self.Preset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="AreaId" />
+      </Principal>
+      <Dependent Role="Preset">
+        <PropertyRef Name="AreaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Area">
+    <End Role="Area" Type="Self.Area" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="AreaId" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="AreaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Category_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Category1" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Category1">
+        <PropertyRef Name="ParentCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Color">
+    <End Role="Color" Type="Self.Color" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Color">
+        <PropertyRef Name="ColorId" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ColorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductHotspotJunction_Hotspot">
+    <End Role="Feature" Type="Self.Feature" Multiplicity="1" />
+    <End Role="ProductHotspotFeature" Type="Self.ProductHotspotFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feature">
+        <PropertyRef Name="FeatureId" />
+      </Principal>
+      <Dependent Role="ProductHotspotFeature">
+        <PropertyRef Name="FeatureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FurnishingStyle_Furnishing">
+    <End Role="Furnishing" Type="Self.Furnishing" Multiplicity="1" />
+    <End Role="PresetFurnishingStyle" Type="Self.PresetFurnishingStyle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Furnishing">
+        <PropertyRef Name="FurnishingId" />
+      </Principal>
+      <Dependent Role="PresetFurnishingStyle">
+        <PropertyRef Name="FurnishingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductHotspotFeature_Hotspot">
+    <End Role="Hotspot" Type="Self.Hotspot" Multiplicity="1" />
+    <End Role="ProductHotspotFeature" Type="Self.ProductHotspotFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotspot">
+        <PropertyRef Name="HotspotId" />
+      </Principal>
+      <Dependent Role="ProductHotspotFeature">
+        <PropertyRef Name="HotspotId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Image_ImageView">
+    <End Role="ImageView" Type="Self.ImageView" Multiplicity="1" />
+    <End Role="Image" Type="Self.Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ImageView">
+        <PropertyRef Name="ImageViewId" />
+      </Principal>
+      <Dependent Role="Image">
+        <PropertyRef Name="ImageViewId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Image_Product1">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Image" Type="Self.Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Image">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FurnishingStyle_Presets">
+    <End Role="Preset" Type="Self.Preset" Multiplicity="1" />
+    <End Role="PresetFurnishingStyle" Type="Self.PresetFurnishingStyle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Preset">
+        <PropertyRef Name="PresetId" />
+      </Principal>
+      <Dependent Role="PresetFurnishingStyle">
+        <PropertyRef Name="PresetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FurnishingStyle_Style">
+    <End Role="Style" Type="Self.Style" Multiplicity="1" />
+    <End Role="PresetFurnishingStyle" Type="Self.PresetFurnishingStyle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Style">
+        <PropertyRef Name="StyleId" />
+      </Principal>
+      <Dependent Role="PresetFurnishingStyle">
+        <PropertyRef Name="StyleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductHotspotJunction_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductHotspotFeature" Type="Self.ProductHotspotFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="ProductHotspotFeature">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductSpecification_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductSpecification" Type="Self.ProductSpecification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="ProductSpecification">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductSpecification_Specification">
+    <End Role="SpecificationType" Type="Self.SpecificationType" Multiplicity="1" />
+    <End Role="ProductSpecification" Type="Self.ProductSpecification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpecificationType">
+        <PropertyRef Name="SpecificationId" />
+      </Principal>
+      <Dependent Role="ProductSpecification">
+        <PropertyRef Name="SpecificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductSpecification_SpecificationImage">
+    <End Role="SpecificationImage" Type="Self.SpecificationImage" Multiplicity="0..1" />
+    <End Role="ProductSpecification" Type="Self.ProductSpecification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpecificationImage">
+        <PropertyRef Name="SpecificationImageId" />
+      </Principal>
+      <Dependent Role="ProductSpecification">
+        <PropertyRef Name="SpecificationImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ApplianceCategoryJunction">
+    <End Role="Appliance" Type="Self.Appliance" Multiplicity="*" />
+    <End Role="Category" Type="Self.Category" Multiplicity="*" />
+  </Association>
+  <Association Name="PresetApplianceJunction">
+    <End Role="Appliance" Type="Self.Appliance" Multiplicity="*" />
+    <End Role="Preset" Type="Self.Preset" Multiplicity="*" />
+  </Association>
+  <Association Name="ProductCategoryJunction">
+    <End Role="Category" Type="Self.Category" Multiplicity="*" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+  </Association>
+  <Association Name="ProductCertificationJunction">
+    <End Role="Certification" Type="Self.Certification" Multiplicity="*" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="LGConfigurator2019Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Appliances" EntityType="Self.Appliance" />
+    <EntitySet Name="Areas" EntityType="Self.Area" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Certifications" EntityType="Self.Certification" />
+    <EntitySet Name="Colors" EntityType="Self.Color" />
+    <EntitySet Name="Features" EntityType="Self.Feature" />
+    <EntitySet Name="Furnishings" EntityType="Self.Furnishing" />
+    <EntitySet Name="Hotspots" EntityType="Self.Hotspot" />
+    <EntitySet Name="Images" EntityType="Self.Image" />
+    <EntitySet Name="ImageViews" EntityType="Self.ImageView" />
+    <EntitySet Name="Presets" EntityType="Self.Preset" />
+    <EntitySet Name="PresetFurnishingStyles" EntityType="Self.PresetFurnishingStyle" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="ProductHotspotFeatures" EntityType="Self.ProductHotspotFeature" />
+    <EntitySet Name="ProductSpecifications" EntityType="Self.ProductSpecification" />
+    <EntitySet Name="SpecificationImages" EntityType="Self.SpecificationImage" />
+    <EntitySet Name="SpecificationTypes" EntityType="Self.SpecificationType" />
+    <EntitySet Name="Styles" EntityType="Self.Style" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="SystemLogs" EntityType="Self.SystemLog" />
+    <AssociationSet Name="FK_Category_Area" Association="Self.FK_Category_Area">
+      <End Role="Area" EntitySet="Areas" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Furnishing_Area" Association="Self.FK_Furnishing_Area">
+      <End Role="Area" EntitySet="Areas" />
+      <End Role="Furnishing" EntitySet="Furnishings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Presets_Area" Association="Self.FK_Presets_Area">
+      <End Role="Area" EntitySet="Areas" />
+      <End Role="Preset" EntitySet="Presets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Area" Association="Self.FK_Product_Area">
+      <End Role="Area" EntitySet="Areas" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Category_Category" Association="Self.FK_Category_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Category1" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Color" Association="Self.FK_Product_Color">
+      <End Role="Color" EntitySet="Colors" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductHotspotJunction_Hotspot" Association="Self.FK_ProductHotspotJunction_Hotspot">
+      <End Role="Feature" EntitySet="Features" />
+      <End Role="ProductHotspotFeature" EntitySet="ProductHotspotFeatures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FurnishingStyle_Furnishing" Association="Self.FK_FurnishingStyle_Furnishing">
+      <End Role="Furnishing" EntitySet="Furnishings" />
+      <End Role="PresetFurnishingStyle" EntitySet="PresetFurnishingStyles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductHotspotFeature_Hotspot" Association="Self.FK_ProductHotspotFeature_Hotspot">
+      <End Role="Hotspot" EntitySet="Hotspots" />
+      <End Role="ProductHotspotFeature" EntitySet="ProductHotspotFeatures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Image_ImageView" Association="Self.FK_Image_ImageView">
+      <End Role="ImageView" EntitySet="ImageViews" />
+      <End Role="Image" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Image_Product1" Association="Self.FK_Image_Product1">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Image" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FurnishingStyle_Presets" Association="Self.FK_FurnishingStyle_Presets">
+      <End Role="Preset" EntitySet="Presets" />
+      <End Role="PresetFurnishingStyle" EntitySet="PresetFurnishingStyles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FurnishingStyle_Style" Association="Self.FK_FurnishingStyle_Style">
+      <End Role="Style" EntitySet="Styles" />
+      <End Role="PresetFurnishingStyle" EntitySet="PresetFurnishingStyles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductHotspotJunction_Product" Association="Self.FK_ProductHotspotJunction_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductHotspotFeature" EntitySet="ProductHotspotFeatures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductSpecification_Product" Association="Self.FK_ProductSpecification_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductSpecification" EntitySet="ProductSpecifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductSpecification_Specification" Association="Self.FK_ProductSpecification_Specification">
+      <End Role="SpecificationType" EntitySet="SpecificationTypes" />
+      <End Role="ProductSpecification" EntitySet="ProductSpecifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductSpecification_SpecificationImage" Association="Self.FK_ProductSpecification_SpecificationImage">
+      <End Role="SpecificationImage" EntitySet="SpecificationImages" />
+      <End Role="ProductSpecification" EntitySet="ProductSpecifications" />
+    </AssociationSet>
+    <AssociationSet Name="ApplianceCategoryJunction" Association="Self.ApplianceCategoryJunction">
+      <End Role="Appliance" EntitySet="Appliances" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="PresetApplianceJunction" Association="Self.PresetApplianceJunction">
+      <End Role="Appliance" EntitySet="Appliances" />
+      <End Role="Preset" EntitySet="Presets" />
+    </AssociationSet>
+    <AssociationSet Name="ProductCategoryJunction" Association="Self.ProductCategoryJunction">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="ProductCertificationJunction" Association="Self.ProductCertificationJunction">
+      <End Role="Certification" EntitySet="Certifications" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

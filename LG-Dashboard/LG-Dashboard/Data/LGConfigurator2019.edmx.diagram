@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="169ee694cbcd4e2e8f0b8fbdf196417e" Name="Diagram1">
+        <EntityTypeShape EntityType="LGConfigurator2019Model.Appliance" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019Model.Area" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019Model.Category" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019Model.Certification" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019Model.Color" Width="1.5" PointX="6" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019Model.Feature" Width="1.5" PointX="8.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019Model.Furnishing" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019Model.Hotspot" Width="1.5" PointX="8.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019Model.Image" Width="1.5" PointX="10.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019Model.ImageView" Width="1.5" PointX="8.25" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019Model.Preset" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019Model.PresetFurnishingStyle" Width="1.5" PointX="5.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019Model.Product" Width="1.5" PointX="8.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019Model.ProductHotspotFeature" Width="1.5" PointX="10.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019Model.ProductSpecification" Width="1.5" PointX="13.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019Model.SpecificationImage" Width="1.5" PointX="11.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019Model.SpecificationType" Width="1.5" PointX="11.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019Model.Style" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019Model.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019Model.SystemLog" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="LGConfigurator2019Model.FK_Category_Area" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019Model.FK_Furnishing_Area" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019Model.FK_Presets_Area" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019Model.FK_Product_Area" ManuallyRouted="true" >
+          <ConnectorPoint PointX="1.9062525" PointY="10.547587890625" />
+          <ConnectorPoint PointX="1.9062525" PointY="12.088359375" />
+          <ConnectorPoint PointX="6.291666666666667" PointY="12.088359375" />
+          <ConnectorPoint PointX="6.458333333333333" PointY="12.088359375" />
+          <ConnectorPoint PointX="7.791666666666667" PointY="12.088359375" />
+          <ConnectorPoint PointX="7.958333333333333" PointY="12.088359375" />
+          <ConnectorPoint PointX="8.25" PointY="12.088359375" />
+        </AssociationConnector>
+        <AssociationConnector Association="LGConfigurator2019Model.FK_Category_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019Model.FK_Product_Color" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019Model.FK_ProductHotspotJunction_Hotspot" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019Model.FK_FurnishingStyle_Furnishing" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019Model.FK_ProductHotspotFeature_Hotspot" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019Model.FK_Image_ImageView" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019Model.FK_Image_Product1" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019Model.FK_FurnishingStyle_Presets" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019Model.FK_FurnishingStyle_Style" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019Model.FK_ProductHotspotJunction_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019Model.FK_ProductSpecification_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019Model.FK_ProductSpecification_Specification" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019Model.FK_ProductSpecification_SpecificationImage" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019Model.ApplianceCategoryJunction" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019Model.PresetApplianceJunction" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019Model.ProductCategoryJunction" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019Model.ProductCertificationJunction" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

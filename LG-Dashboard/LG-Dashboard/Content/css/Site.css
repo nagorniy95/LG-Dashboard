@@ -1,0 +1,148 @@
+﻿@font-face {
+  font-family: 'LG Smart';
+  src: url("/Content/fonts/LG/LGSmartRegular.eot");
+  src: url("/Content/fonts/LG/LGSmartRegular.eot?#iefix") format("embedded-opentype"), url("/Content/fonts/LG/LGSmartRegular.woff2") format("woff2"), url("/Content/fonts/LG/LGSmartRegular.woff") format("woff"), url("/Content/fonts/LG/LGSmartRegular.ttf") format("truetype"), url("/Content/fonts/LG/LGSmartRegular.svg#/Content/fonts/LG/LGSmartRegular") format("svg");
+  font-weight: 400;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'LG Smart';
+  src: url("/Content/fonts/LG/LGSmartBold.eot");
+  src: url("/Content/fonts/LG/LGSmartBold.eot?#iefix") format("embedded-opentype"), url("/Content/fonts/LG/LGSmartBold.woff2") format("woff2"), url("/Content/fonts/LG/LGSmartBold.woff") format("woff"), url("/Content/fonts/LG/LGSmartBold.ttf") format("truetype"), url("/Content/fonts/LG/LGSmartBold.svg#/Content/fonts/LG/LGSmartBold") format("svg");
+  font-weight: 700;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'LG Smart';
+  src: url("/Content/fonts/LG/LGSmartLight.eot");
+  src: url("/Content/fonts/LG/LGSmartLight.eot?#iefix") format("embedded-opentype"), url("/Content/fonts/LG/LGSmartLight.woff2") format("woff2"), url("/Content/fonts/LG/LGSmartLight.woff") format("woff"), url("/Content/fonts/LG/LGSmartLight.ttf") format("truetype"), url("/Content/fonts/LG/LGSmartLight.svg#/Content/fonts/LG/LGSmartLight") format("svg");
+  font-weight: 300;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'LG Smart';
+  src: url("/Content/fonts/LG/LGSmartSemiBold.eot");
+  src: url("/Content/fonts/LG/LGSmartSemiBold.eot?#iefix") format("embedded-opentype"), url("/Content/fonts/LG/LGSmartSemiBold.woff2") format("woff2"), url("/Content/fonts/LG/LGSmartSemiBold.woff") format("woff"), url("/Content/fonts/LG/LGSmartSemiBold.ttf") format("truetype"), url("/Content/fonts/LG/LGSmartSemiBold.svg#/Content/fonts/LG/LGSmartSemiBold") format("svg");
+  font-weight: 600;
+  font-style: normal; }
+
+.showing {
+  display: block; }
+
+.hidden {
+  display: none; }
+
+.flex {
+  display: flex; }
+
+html {
+  overflow-x: hidden; }
+
+body, html {
+  font-family: "LG Smart", sans-serif;
+  font-weight: normal;
+  background-color: #ebecee;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  min-height: 1080px; }
+
+h1 {
+  font-size: 72px; }
+
+/*h2 {
+    font-size: 60px;
+}*/
+h3 {
+  font-size: 48px; }
+
+h4 {
+  font-size: 36px; }
+
+h5 {
+  font-size: 24px; }
+
+h6 {
+  font-size: 18px; }
+
+p {
+  font-size: 16px; }
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: inherit;
+  font-weight: normal;
+  line-height: 1.1;
+  color: inherit; }
+
+a {
+  text-transform: none;
+  text-decoration: none; }
+
+/* =========================== Navigation =========================== */
+.navbar {
+  border-radius: 0;
+  height: 100%;
+  width: 20%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #2d2d2d;
+  overflow-x: hidden;
+  padding-top: 20px;
+  float: left; }
+
+.navbar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #ebecee; }
+
+.body-content {
+  width: 80%;
+  padding-top: 20px;
+  float: right; }
+
+.activeLink a {
+  color: #a50134; }
+
+.group-block {
+  background: #fff;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ccc, 0 1px 0 #ccc, inset 1px 0 0 #ccc, 0 -1px 0 0 #ccc, inset -1px 0 0 #ccc; }
+
+.session-block {
+  padding: 20px;
+  color: #fff;
+  background-color: #a50134; }
+  .session-block .session-title {
+    font-weight: 600; }
+  .session-block p {
+    font-weight: 300; }
+  .session-block .row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap; }
+  .session-block .row > [class*='col-'] {
+    display: flex;
+    flex-direction: column; }
+
+.product-group .lg-red-block {
+  color: #fff;
+  background-color: #a50134; }
+  .product-group .lg-red-block p {
+    padding: 20px; }
+
+.product-group .table {
+  background: #ebecee; }
+  .product-group .table td, .product-group .table th {
+    padding-left: 25px;
+    border-top: 0;
+    border-bottom: 0;
+    line-height: 1em;
+    border-right: 1px solid #ddd; }
+  .product-group .table td:last-child, .product-group .table th:last-child {
+    border-right: none; }

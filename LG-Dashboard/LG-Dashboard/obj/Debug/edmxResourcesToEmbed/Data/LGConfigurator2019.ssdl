@@ -1,0 +1,688 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LGConfigurator2019Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Appliance">
+    <Key>
+      <PropertyRef Name="ApplianceId" />
+    </Key>
+    <Property Name="ApplianceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name_EN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name_FR" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="InternalName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DefaultImageUrl" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ApplianceCategoryJunction">
+    <Key>
+      <PropertyRef Name="ApplianceId" />
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="ApplianceId" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="AreaId" />
+    </Key>
+    <Property Name="AreaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AreaName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AreaId" Type="int" Nullable="false" />
+    <Property Name="ParentCategoryId" Type="int" />
+    <Property Name="InternalName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DisplayName_EN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DisplayName_FR" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductLabel_EN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductLabel_FR" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ImageUrl" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SortOrder" Type="int" />
+    <Property Name="IsVisible" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Certification">
+    <Key>
+      <PropertyRef Name="CertificationId" />
+    </Key>
+    <Property Name="CertificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CertificationUrl" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Color">
+    <Key>
+      <PropertyRef Name="ColorId" />
+    </Key>
+    <Property Name="ColorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name_EN" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name_FR" Type="nvarchar" MaxLength="50" />
+    <Property Name="ImageUrl" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Feature">
+    <Key>
+      <PropertyRef Name="FeatureId" />
+    </Key>
+    <Property Name="FeatureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name_EN" Type="nvarchar" MaxLength="100" />
+    <Property Name="Name_FR" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description_EN" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description_FR" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="YoutubeVideoUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LogoUrl_EN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LogoUrl_FR" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsFilterable" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Furnishing">
+    <Key>
+      <PropertyRef Name="FurnishingId" />
+    </Key>
+    <Property Name="FurnishingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AreaId" Type="int" Nullable="false" />
+    <Property Name="Name_EN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name_FR" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="InternalName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Hotspot">
+    <Key>
+      <PropertyRef Name="HotspotId" />
+    </Key>
+    <Property Name="HotspotId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LeftPos" Type="float" Nullable="false" />
+    <Property Name="TopPos" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="ImageId" />
+    </Key>
+    <Property Name="ImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="ImageViewId" Type="int" Nullable="false" />
+    <Property Name="ImageUrl" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ImageView">
+    <Key>
+      <PropertyRef Name="ImageViewId" />
+    </Key>
+    <Property Name="ImageViewId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Position" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ThumbUrl" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Preset">
+    <Key>
+      <PropertyRef Name="PresetId" />
+    </Key>
+    <Property Name="PresetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AreaId" Type="int" Nullable="false" />
+    <Property Name="Name_EN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name_FR" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ImageUrl" Type="varchar" MaxLength="50" />
+    <Property Name="ThumbUrl" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="InternalName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DefaultColour" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PresetApplianceJunction">
+    <Key>
+      <PropertyRef Name="ApplianceId" />
+      <PropertyRef Name="PresetId" />
+    </Key>
+    <Property Name="ApplianceId" Type="int" Nullable="false" />
+    <Property Name="PresetId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PresetFurnishingStyle">
+    <Key>
+      <PropertyRef Name="PresetFurnishingStyleId" />
+    </Key>
+    <Property Name="PresetFurnishingStyleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StyleId" Type="int" Nullable="false" />
+    <Property Name="FurnishingId" Type="int" Nullable="false" />
+    <Property Name="PresetId" Type="int" Nullable="false" />
+    <Property Name="IsDefault" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AreaId" Type="int" Nullable="false" />
+    <Property Name="ColorId" Type="int" Nullable="false" />
+    <Property Name="Name_EN" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Name_FR" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description_EN" Type="nvarchar(max)" />
+    <Property Name="Description_FR" Type="nvarchar(max)" />
+    <Property Name="MSRP" Type="decimal" Precision="19" Scale="2" Nullable="false" />
+    <Property Name="SalePrice" Type="decimal" Precision="19" Scale="2" />
+    <Property Name="ModelNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BestBuyWebCode" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Disclaimer_EN" Type="nvarchar" MaxLength="500" />
+    <Property Name="Disclaimer_FR" Type="nvarchar" MaxLength="500" />
+    <Property Name="ThumbnailUrl" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="DateLastEdited" Type="datetime" Nullable="false" />
+    <Property Name="IsAutoArchive" Type="bit" Nullable="false" />
+    <Property Name="IsManualArchive" Type="bit" Nullable="false" />
+    <Property Name="IsCatalogOnly" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductCategoryJunction">
+    <Key>
+      <PropertyRef Name="ProductId" />
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductCertificationJunction">
+    <Key>
+      <PropertyRef Name="ProductId" />
+      <PropertyRef Name="CertificationId" />
+    </Key>
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="CertificationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductHotspotFeature">
+    <Key>
+      <PropertyRef Name="ProductId" />
+      <PropertyRef Name="HotspotId" />
+      <PropertyRef Name="FeatureId" />
+    </Key>
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="HotspotId" Type="int" Nullable="false" />
+    <Property Name="FeatureId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductSpecification">
+    <Key>
+      <PropertyRef Name="ProductSpecificationId" />
+    </Key>
+    <Property Name="ProductSpecificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="SpecificationId" Type="int" Nullable="false" />
+    <Property Name="SpecValue_EN" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SpecificationImageId" Type="int" />
+    <Property Name="SpecValue_FR" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SpecificationImage">
+    <Key>
+      <PropertyRef Name="SpecificationImageId" />
+    </Key>
+    <Property Name="SpecificationImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImageUrl" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SpecificationType">
+    <Key>
+      <PropertyRef Name="SpecificationId" />
+    </Key>
+    <Property Name="SpecificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SpecType_EN" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Units_EN" Type="varchar" MaxLength="50" />
+    <Property Name="IsFilterable" Type="bit" Nullable="false" />
+    <Property Name="SortName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SpecType_FR" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Units_FR" Type="varchar" MaxLength="50" />
+    <Property Name="InternalName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsVisible" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Style">
+    <Key>
+      <PropertyRef Name="StyleId" />
+    </Key>
+    <Property Name="StyleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name_EN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name_FR" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ImageUrl" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ThumbUrl" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'LGConfigurator2019.dbo.SystemLogs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="SystemLogs">
+    <Key>
+      <PropertyRef Name="Exception" />
+      <PropertyRef Name="StackTrace" />
+      <PropertyRef Name="TimeStamp" />
+    </Key>
+    <Property Name="Exception" Type="varchar(max)" Nullable="false" />
+    <Property Name="StackTrace" Type="varchar(max)" Nullable="false" />
+    <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ApplianceCategoryJunction_Appliance">
+    <End Role="Appliance" Type="Self.Appliance" Multiplicity="1" />
+    <End Role="ApplianceCategoryJunction" Type="Self.ApplianceCategoryJunction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Appliance">
+        <PropertyRef Name="ApplianceId" />
+      </Principal>
+      <Dependent Role="ApplianceCategoryJunction">
+        <PropertyRef Name="ApplianceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApplianceCategoryJunction_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="ApplianceCategoryJunction" Type="Self.ApplianceCategoryJunction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="ApplianceCategoryJunction">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Category_Area">
+    <End Role="Area" Type="Self.Area" Multiplicity="1" />
+    <End Role="Category" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="AreaId" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="AreaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Category_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Category1" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Category1">
+        <PropertyRef Name="ParentCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Furnishing_Area">
+    <End Role="Area" Type="Self.Area" Multiplicity="1" />
+    <End Role="Furnishing" Type="Self.Furnishing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="AreaId" />
+      </Principal>
+      <Dependent Role="Furnishing">
+        <PropertyRef Name="AreaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FurnishingStyle_Furnishing">
+    <End Role="Furnishing" Type="Self.Furnishing" Multiplicity="1" />
+    <End Role="PresetFurnishingStyle" Type="Self.PresetFurnishingStyle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Furnishing">
+        <PropertyRef Name="FurnishingId" />
+      </Principal>
+      <Dependent Role="PresetFurnishingStyle">
+        <PropertyRef Name="FurnishingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FurnishingStyle_Presets">
+    <End Role="Preset" Type="Self.Preset" Multiplicity="1" />
+    <End Role="PresetFurnishingStyle" Type="Self.PresetFurnishingStyle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Preset">
+        <PropertyRef Name="PresetId" />
+      </Principal>
+      <Dependent Role="PresetFurnishingStyle">
+        <PropertyRef Name="PresetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FurnishingStyle_Style">
+    <End Role="Style" Type="Self.Style" Multiplicity="1" />
+    <End Role="PresetFurnishingStyle" Type="Self.PresetFurnishingStyle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Style">
+        <PropertyRef Name="StyleId" />
+      </Principal>
+      <Dependent Role="PresetFurnishingStyle">
+        <PropertyRef Name="StyleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Image_ImageView">
+    <End Role="ImageView" Type="Self.ImageView" Multiplicity="1" />
+    <End Role="Image" Type="Self.Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ImageView">
+        <PropertyRef Name="ImageViewId" />
+      </Principal>
+      <Dependent Role="Image">
+        <PropertyRef Name="ImageViewId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Image_Product1">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Image" Type="Self.Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Image">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PresetApplianceJunction_Appliance">
+    <End Role="Appliance" Type="Self.Appliance" Multiplicity="1" />
+    <End Role="PresetApplianceJunction" Type="Self.PresetApplianceJunction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Appliance">
+        <PropertyRef Name="ApplianceId" />
+      </Principal>
+      <Dependent Role="PresetApplianceJunction">
+        <PropertyRef Name="ApplianceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PresetApplianceJunction_Preset">
+    <End Role="Preset" Type="Self.Preset" Multiplicity="1" />
+    <End Role="PresetApplianceJunction" Type="Self.PresetApplianceJunction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Preset">
+        <PropertyRef Name="PresetId" />
+      </Principal>
+      <Dependent Role="PresetApplianceJunction">
+        <PropertyRef Name="PresetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Presets_Area">
+    <End Role="Area" Type="Self.Area" Multiplicity="1" />
+    <End Role="Preset" Type="Self.Preset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="AreaId" />
+      </Principal>
+      <Dependent Role="Preset">
+        <PropertyRef Name="AreaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Area">
+    <End Role="Area" Type="Self.Area" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="AreaId" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="AreaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Color">
+    <End Role="Color" Type="Self.Color" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Color">
+        <PropertyRef Name="ColorId" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ColorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductCategoryJunction_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="ProductCategoryJunction" Type="Self.ProductCategoryJunction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="ProductCategoryJunction">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductCategoryJunction_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductCategoryJunction" Type="Self.ProductCategoryJunction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="ProductCategoryJunction">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductCertificationJunction_Certification">
+    <End Role="Certification" Type="Self.Certification" Multiplicity="1" />
+    <End Role="ProductCertificationJunction" Type="Self.ProductCertificationJunction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Certification">
+        <PropertyRef Name="CertificationId" />
+      </Principal>
+      <Dependent Role="ProductCertificationJunction">
+        <PropertyRef Name="CertificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductCertificationJunction_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductCertificationJunction" Type="Self.ProductCertificationJunction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="ProductCertificationJunction">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductHotspotFeature_Hotspot">
+    <End Role="Hotspot" Type="Self.Hotspot" Multiplicity="1" />
+    <End Role="ProductHotspotFeature" Type="Self.ProductHotspotFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotspot">
+        <PropertyRef Name="HotspotId" />
+      </Principal>
+      <Dependent Role="ProductHotspotFeature">
+        <PropertyRef Name="HotspotId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductHotspotJunction_Hotspot">
+    <End Role="Feature" Type="Self.Feature" Multiplicity="1" />
+    <End Role="ProductHotspotFeature" Type="Self.ProductHotspotFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feature">
+        <PropertyRef Name="FeatureId" />
+      </Principal>
+      <Dependent Role="ProductHotspotFeature">
+        <PropertyRef Name="FeatureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductHotspotJunction_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductHotspotFeature" Type="Self.ProductHotspotFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="ProductHotspotFeature">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductSpecification_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductSpecification" Type="Self.ProductSpecification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="ProductSpecification">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductSpecification_Specification">
+    <End Role="SpecificationType" Type="Self.SpecificationType" Multiplicity="1" />
+    <End Role="ProductSpecification" Type="Self.ProductSpecification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpecificationType">
+        <PropertyRef Name="SpecificationId" />
+      </Principal>
+      <Dependent Role="ProductSpecification">
+        <PropertyRef Name="SpecificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductSpecification_SpecificationImage">
+    <End Role="SpecificationImage" Type="Self.SpecificationImage" Multiplicity="0..1" />
+    <End Role="ProductSpecification" Type="Self.ProductSpecification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SpecificationImage">
+        <PropertyRef Name="SpecificationImageId" />
+      </Principal>
+      <Dependent Role="ProductSpecification">
+        <PropertyRef Name="SpecificationImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LGConfigurator2019ModelStoreContainer">
+    <EntitySet Name="Appliance" EntityType="Self.Appliance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ApplianceCategoryJunction" EntityType="Self.ApplianceCategoryJunction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Certification" EntityType="Self.Certification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Feature" EntityType="Self.Feature" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Furnishing" EntityType="Self.Furnishing" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hotspot" EntityType="Self.Hotspot" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ImageView" EntityType="Self.ImageView" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Preset" EntityType="Self.Preset" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PresetApplianceJunction" EntityType="Self.PresetApplianceJunction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PresetFurnishingStyle" EntityType="Self.PresetFurnishingStyle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductCategoryJunction" EntityType="Self.ProductCategoryJunction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductCertificationJunction" EntityType="Self.ProductCertificationJunction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductHotspotFeature" EntityType="Self.ProductHotspotFeature" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductSpecification" EntityType="Self.ProductSpecification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SpecificationImage" EntityType="Self.SpecificationImage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SpecificationType" EntityType="Self.SpecificationType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Style" EntityType="Self.Style" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SystemLogs" EntityType="Self.SystemLogs" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [SystemLogs].[Exception] AS [Exception], 
+    [SystemLogs].[StackTrace] AS [StackTrace], 
+    [SystemLogs].[TimeStamp] AS [TimeStamp]
+    FROM [dbo].[SystemLogs] AS [SystemLogs]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_ApplianceCategoryJunction_Appliance" Association="Self.FK_ApplianceCategoryJunction_Appliance">
+      <End Role="Appliance" EntitySet="Appliance" />
+      <End Role="ApplianceCategoryJunction" EntitySet="ApplianceCategoryJunction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplianceCategoryJunction_Category" Association="Self.FK_ApplianceCategoryJunction_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="ApplianceCategoryJunction" EntitySet="ApplianceCategoryJunction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Category_Area" Association="Self.FK_Category_Area">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="Category" EntitySet="Category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Category_Category" Association="Self.FK_Category_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Category1" EntitySet="Category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Furnishing_Area" Association="Self.FK_Furnishing_Area">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="Furnishing" EntitySet="Furnishing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FurnishingStyle_Furnishing" Association="Self.FK_FurnishingStyle_Furnishing">
+      <End Role="Furnishing" EntitySet="Furnishing" />
+      <End Role="PresetFurnishingStyle" EntitySet="PresetFurnishingStyle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FurnishingStyle_Presets" Association="Self.FK_FurnishingStyle_Presets">
+      <End Role="Preset" EntitySet="Preset" />
+      <End Role="PresetFurnishingStyle" EntitySet="PresetFurnishingStyle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FurnishingStyle_Style" Association="Self.FK_FurnishingStyle_Style">
+      <End Role="Style" EntitySet="Style" />
+      <End Role="PresetFurnishingStyle" EntitySet="PresetFurnishingStyle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Image_ImageView" Association="Self.FK_Image_ImageView">
+      <End Role="ImageView" EntitySet="ImageView" />
+      <End Role="Image" EntitySet="Image" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Image_Product1" Association="Self.FK_Image_Product1">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Image" EntitySet="Image" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PresetApplianceJunction_Appliance" Association="Self.FK_PresetApplianceJunction_Appliance">
+      <End Role="Appliance" EntitySet="Appliance" />
+      <End Role="PresetApplianceJunction" EntitySet="PresetApplianceJunction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PresetApplianceJunction_Preset" Association="Self.FK_PresetApplianceJunction_Preset">
+      <End Role="Preset" EntitySet="Preset" />
+      <End Role="PresetApplianceJunction" EntitySet="PresetApplianceJunction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Presets_Area" Association="Self.FK_Presets_Area">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="Preset" EntitySet="Preset" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Area" Association="Self.FK_Product_Area">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Color" Association="Self.FK_Product_Color">
+      <End Role="Color" EntitySet="Color" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductCategoryJunction_Category" Association="Self.FK_ProductCategoryJunction_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="ProductCategoryJunction" EntitySet="ProductCategoryJunction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductCategoryJunction_Product" Association="Self.FK_ProductCategoryJunction_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductCategoryJunction" EntitySet="ProductCategoryJunction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductCertificationJunction_Certification" Association="Self.FK_ProductCertificationJunction_Certification">
+      <End Role="Certification" EntitySet="Certification" />
+      <End Role="ProductCertificationJunction" EntitySet="ProductCertificationJunction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductCertificationJunction_Product" Association="Self.FK_ProductCertificationJunction_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductCertificationJunction" EntitySet="ProductCertificationJunction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductHotspotFeature_Hotspot" Association="Self.FK_ProductHotspotFeature_Hotspot">
+      <End Role="Hotspot" EntitySet="Hotspot" />
+      <End Role="ProductHotspotFeature" EntitySet="ProductHotspotFeature" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductHotspotJunction_Hotspot" Association="Self.FK_ProductHotspotJunction_Hotspot">
+      <End Role="Feature" EntitySet="Feature" />
+      <End Role="ProductHotspotFeature" EntitySet="ProductHotspotFeature" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductHotspotJunction_Product" Association="Self.FK_ProductHotspotJunction_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductHotspotFeature" EntitySet="ProductHotspotFeature" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductSpecification_Product" Association="Self.FK_ProductSpecification_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductSpecification" EntitySet="ProductSpecification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductSpecification_Specification" Association="Self.FK_ProductSpecification_Specification">
+      <End Role="SpecificationType" EntitySet="SpecificationType" />
+      <End Role="ProductSpecification" EntitySet="ProductSpecification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductSpecification_SpecificationImage" Association="Self.FK_ProductSpecification_SpecificationImage">
+      <End Role="SpecificationImage" EntitySet="SpecificationImage" />
+      <End Role="ProductSpecification" EntitySet="ProductSpecification" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

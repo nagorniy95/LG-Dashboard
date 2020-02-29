@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LGConfigurator2019_trackingModelStoreContainer" CdmEntityContainer="LGConfigurator2019_trackingEntities">
+    <EntitySetMapping Name="AggregateFeatures">
+      <EntityTypeMapping TypeName="LGConfigurator2019_trackingModel.AggregateFeature">
+        <MappingFragment StoreEntitySet="AggregateFeature">
+          <ScalarProperty Name="AggregateFeatureId" ColumnName="AggregateFeatureId" />
+          <ScalarProperty Name="TrackingTypeId" ColumnName="TrackingTypeId" />
+          <ScalarProperty Name="RetailerId" ColumnName="RetailerId" />
+          <ScalarProperty Name="FeatureId" ColumnName="FeatureId" />
+          <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AggregateProducts">
+      <EntityTypeMapping TypeName="LGConfigurator2019_trackingModel.AggregateProduct">
+        <MappingFragment StoreEntitySet="AggregateProduct">
+          <ScalarProperty Name="AggregateProductId" ColumnName="AggregateProductId" />
+          <ScalarProperty Name="TrackingTypeId" ColumnName="TrackingTypeId" />
+          <ScalarProperty Name="RetailerId" ColumnName="RetailerId" />
+          <ScalarProperty Name="ModelNumber" ColumnName="ModelNumber" />
+          <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AggregateSearches">
+      <EntityTypeMapping TypeName="LGConfigurator2019_trackingModel.AggregateSearch">
+        <MappingFragment StoreEntitySet="AggregateSearch">
+          <ScalarProperty Name="AggregateSearchId" ColumnName="AggregateSearchId" />
+          <ScalarProperty Name="TrackingTypeId" ColumnName="TrackingTypeId" />
+          <ScalarProperty Name="RetailerId" ColumnName="RetailerId" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Retailers">
+      <EntityTypeMapping TypeName="LGConfigurator2019_trackingModel.Retailer">
+        <MappingFragment StoreEntitySet="Retailer">
+          <ScalarProperty Name="RetailerId" ColumnName="RetailerId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="StoreNumber" ColumnName="StoreNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sessions">
+      <EntityTypeMapping TypeName="LGConfigurator2019_trackingModel.Session">
+        <MappingFragment StoreEntitySet="Session">
+          <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+          <ScalarProperty Name="RetailerId" ColumnName="RetailerId" />
+          <ScalarProperty Name="Hash" ColumnName="Hash" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="StartTimestamp" ColumnName="StartTimestamp" />
+          <ScalarProperty Name="EndTimestamp" ColumnName="EndTimestamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="LGConfigurator2019_trackingModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrackingFeatures">
+      <EntityTypeMapping TypeName="LGConfigurator2019_trackingModel.TrackingFeature">
+        <MappingFragment StoreEntitySet="TrackingFeature">
+          <ScalarProperty Name="TrackingFeatureId" ColumnName="TrackingFeatureId" />
+          <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+          <ScalarProperty Name="TrackingTypeId" ColumnName="TrackingTypeId" />
+          <ScalarProperty Name="FeatureId" ColumnName="FeatureId" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="IsAggregated" ColumnName="IsAggregated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrackingProducts">
+      <EntityTypeMapping TypeName="LGConfigurator2019_trackingModel.TrackingProduct">
+        <MappingFragment StoreEntitySet="TrackingProduct">
+          <ScalarProperty Name="TrackingProductId" ColumnName="TrackingProductId" />
+          <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+          <ScalarProperty Name="TrackingTypeId" ColumnName="TrackingTypeId" />
+          <ScalarProperty Name="ModelNumber" ColumnName="ModelNumber" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="IsAggregated" ColumnName="IsAggregated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrackingSearches">
+      <EntityTypeMapping TypeName="LGConfigurator2019_trackingModel.TrackingSearch">
+        <MappingFragment StoreEntitySet="TrackingSearch">
+          <ScalarProperty Name="TrackingSearchId" ColumnName="TrackingSearchId" />
+          <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+          <ScalarProperty Name="TrackingTypeId" ColumnName="TrackingTypeId" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="IsAggregated" ColumnName="IsAggregated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrackingSystemLogs">
+      <EntityTypeMapping TypeName="LGConfigurator2019_trackingModel.TrackingSystemLog">
+        <MappingFragment StoreEntitySet="TrackingSystemLogs">
+          <ScalarProperty Name="SystemLogId" ColumnName="SystemLogId" />
+          <ScalarProperty Name="Exception" ColumnName="Exception" />
+          <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrackingTypes">
+      <EntityTypeMapping TypeName="LGConfigurator2019_trackingModel.TrackingType">
+        <MappingFragment StoreEntitySet="TrackingType">
+          <ScalarProperty Name="TrackingTypeId" ColumnName="TrackingTypeId" />
+          <ScalarProperty Name="Type_EN" ColumnName="Type_EN" />
+          <ScalarProperty Name="Type_FR" ColumnName="Type_FR" />
+          <ScalarProperty Name="Points" ColumnName="Points" />
+          <ScalarProperty Name="InternalName" ColumnName="InternalName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

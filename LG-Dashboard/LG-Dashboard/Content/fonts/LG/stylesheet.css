@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'LG Smart';
+    src: url('LGSmartRegular.eot');
+    src: url('LGSmartRegular.eot?#iefix') format('embedded-opentype'),
+        url('LGSmartRegular.woff2') format('woff2'),
+        url('LGSmartRegular.woff') format('woff'),
+        url('LGSmartRegular.ttf') format('truetype'),
+        url('LGSmartRegular.svg#LGSmartRegular') format('svg');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'LG Smart';
+    src: url('LGSmartBold.eot');
+    src: url('LGSmartBold.eot?#iefix') format('embedded-opentype'),
+        url('LGSmartBold.woff2') format('woff2'),
+        url('LGSmartBold.woff') format('woff'),
+        url('LGSmartBold.ttf') format('truetype'),
+        url('LGSmartBold.svg#LGSmartBold') format('svg');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'LG Smart';
+    src: url('LGSmartLight.eot');
+    src: url('LGSmartLight.eot?#iefix') format('embedded-opentype'),
+        url('LGSmartLight.woff2') format('woff2'),
+        url('LGSmartLight.woff') format('woff'),
+        url('LGSmartLight.ttf') format('truetype'),
+        url('LGSmartLight.svg#LGSmartLight') format('svg');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'LG Smart Light Bold';
+    src: url('LGSmartSemiBold.eot');
+    src: url('LGSmartSemiBold.eot?#iefix') format('embedded-opentype'),
+        url('LGSmartSemiBold.woff2') format('woff2'),
+        url('LGSmartSemiBold.woff') format('woff'),
+        url('LGSmartSemiBold.ttf') format('truetype'),
+        url('LGSmartSemiBold.svg#LGSmartSemiBold') format('svg');
+    font-weight: 600;
+    font-style: italic;
+}

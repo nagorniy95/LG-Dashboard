@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c1be0e134a1e404ea04a0c8577e6f7eb" Name="Diagram1">
+        <EntityTypeShape EntityType="LGConfigurator2019_trackingModel.AggregateFeature" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019_trackingModel.AggregateProduct" Width="1.5" PointX="6" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019_trackingModel.AggregateSearch" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019_trackingModel.Retailer" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019_trackingModel.Session" Width="1.5" PointX="3.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019_trackingModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019_trackingModel.TrackingFeature" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019_trackingModel.TrackingProduct" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019_trackingModel.TrackingSearch" Width="1.5" PointX="6" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019_trackingModel.TrackingSystemLog" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LGConfigurator2019_trackingModel.TrackingType" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="LGConfigurator2019_trackingModel.FK_AggregateFeature_Retailer" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019_trackingModel.FK_AggregateFeature_TrackingType" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019_trackingModel.FK_Aggregate_AggregateType" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019_trackingModel.FK_AggregateProduct_Retailer" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019_trackingModel.FK_AggregateSearch_Retailer" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019_trackingModel.FK_AggregateSearch_TrackingType" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019_trackingModel.FK_Session_Retailer" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019_trackingModel.FK_Tracking_Session" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019_trackingModel.FK_TrackingFeature_Session" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019_trackingModel.FK_TrackingSearch_Session" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019_trackingModel.FK_TrackingFeature_TrackingType" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019_trackingModel.FK_TrackingProduct_TrackingType" ManuallyRouted="false" />
+        <AssociationConnector Association="LGConfigurator2019_trackingModel.FK_TrackingSearch_TrackingType" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,44 @@
+﻿@{
+    string controller = ViewContext.RouteData.Values["Controller"].ToString().ToLower();
+    string action = ViewContext.RouteData.Values["Action"].ToString().ToLower();
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        @Html.ActionLink("LG", "Index", "Home", new { area = "" })
+        <div class="navbar-collapse collapse">
+            <ul>
+                <li class="national-nav-item @(controller == "home" && action == "index" ? "activeLink" : "")">@Html.ActionLink("National", "Index", "Home")</li>
+                <li class="location-nav-item @(controller == "home" && action == "location" ? "activeLink" : "")">@Html.ActionLink("Location", "Location", "Home")</li>
+            </ul>
+            @*@Html.Partial("_LoginPartial")*@
+        </div>
+    </div>
+    <div class="body-content">
+        @RenderBody()
+        <hr />
+        <footer></footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
